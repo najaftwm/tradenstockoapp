@@ -104,9 +104,9 @@ const Welcome = () => {
 
       {/* Glassmorphism Header - Responsive for mobile */}
       <header className="fixed left-1/2 transform -translate-x-1/2 z-40 w-[95%] sm:w-[90%] max-w-[1200px]"
-              style={{ top: '15px' }}>
+              style={{ top: '8px' }}>
         <div 
-          className="backdrop-blur-[20px] bg-white/5 px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 flex items-center justify-between shadow-2xl"
+          className="backdrop-blur-[20px] bg-white/5 px-2 py-1.5 sm:px-4 sm:py-3 md:px-6 md:py-4 flex items-center justify-between shadow-2xl"
           style={{
             borderRadius: '50px',
             border: '1px solid rgba(255, 255, 255, 0.08)',
@@ -114,25 +114,25 @@ const Welcome = () => {
             boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
           }}
         >
-          <div className="flex items-center space-x-2 sm:space-x-3">
-            <img src={logo} alt="TradeNstocko Logo" className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg object-contain" />
-            <span className="text-white font-semibold text-sm sm:text-base md:text-lg tracking-tight">Tradenstocko</span>
+          <div className="flex items-center space-x-1.5 sm:space-x-3">
+            <img src={logo} alt="TradeNstocko Logo" className="w-6 h-6 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg object-contain" />
+            <span className="text-white font-semibold text-xs sm:text-base md:text-lg tracking-tight">Tradenstocko</span>
           </div>
-          <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
+          <div className="flex items-center space-x-1.5 sm:space-x-3 md:space-x-4">
             <button className="text-slate-400 hover:text-blue-400 transition-colors" aria-label="Help">
-              <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+              <HelpCircle className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
             </button>
             <button className="text-slate-400 hover:text-blue-400 transition-colors" aria-label="Settings">
-              <Settings className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Settings className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>
       </header>
 
       {/* Main Content - Vertical Stack on Mobile */}
-      <main className="relative z-10 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-20 sm:pb-24 px-4 sm:px-6" style={{ minHeight: '100dvh' }}>
+      <main className="relative z-10 pt-12 sm:pt-24 md:pt-28 lg:pt-32 pb-2 sm:pb-24 px-4 sm:px-6" style={{ minHeight: '100dvh' }}>
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center lg:items-start">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-2 sm:gap-10 md:gap-12 items-center lg:items-start">
             {/* Hero Text Section - Center on Mobile, Left on Desktop */}
             <div 
               className={`w-full text-center lg:text-left transition-all duration-1000 mobile-order-1 lg:order-none ${
@@ -141,12 +141,12 @@ const Welcome = () => {
             >
               <div>
                 <h1 
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mx-auto lg:mx-0"
+                  className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mx-auto lg:mx-0"
                   style={{ 
                     fontFamily: 'system-ui, -apple-system, sans-serif',
                     letterSpacing: '-0.02em',
                     lineHeight: '0.98',
-                    marginBottom: '12px',
+                    marginBottom: '4px',
                     background: 'linear-gradient(180deg, #FFFFFF 0%, #BCCCDC 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
@@ -165,7 +165,7 @@ const Welcome = () => {
                   >.</span>
                 </h1>
                 <p 
-                  className="text-base sm:text-lg md:text-xl font-light tracking-wide leading-relaxed mx-auto lg:mx-0 sub-headline"
+                  className="text-sm sm:text-lg md:text-xl font-light tracking-wide leading-relaxed mx-auto lg:mx-0 sub-headline"
                   style={{ 
                     letterSpacing: '0.05em',
                     color: '#CBD5E1',
@@ -176,6 +176,33 @@ const Welcome = () => {
                   Experience institutional-grade execution with the simplicity of a modern app.
                 </p>
               </div>
+              
+              {/* Action Buttons - Inside text section on Desktop, separate on Mobile */}
+              <div className="w-full mobile-order-3 lg:order-none lg:mt-6 hidden lg:block">
+                <div className="space-y-4 w-full max-w-md mx-auto lg:max-w-none lg:mx-0">
+                  {/* Primary CTA - Neon Gradient with Gem Effect */}
+                  <button
+                    onClick={handleRegister}
+                    className="w-full md:w-auto group relative overflow-hidden bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] text-white font-semibold py-5 px-8 rounded-xl transition-all duration-300 flex items-center justify-center space-x-3 hover:scale-105 btn-primary-gem"
+                    style={{
+                      boxShadow: '0 0 20px rgba(59, 130, 246, 0.4)',
+                    }}
+                  >
+                    <UserPlus className="w-5 h-5 flex-shrink-0" />
+                    <span>Open New Account</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                  </button>
+
+                  {/* Secondary CTA - Glass Button */}
+                  <button
+                    onClick={handleLogin}
+                    className="w-full md:w-auto backdrop-blur-xl bg-white/5 border border-white/20 text-white font-semibold py-5 px-8 rounded-xl transition-all duration-300 flex items-center justify-center space-x-3 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                  >
+                    <LogIn className="w-5 h-5 flex-shrink-0" />
+                    <span>Login</span>
+                  </button>
+                </div>
+              </div>
             </div>
 
             {/* 3D Floating Smartphone Mockup - Middle on Mobile, Right on Desktop */}
@@ -185,6 +212,7 @@ const Welcome = () => {
               }`}
               style={{
                 marginBottom: '0',
+                marginTop: '0',
               }}
             >
               <div 
@@ -308,29 +336,29 @@ const Welcome = () => {
               </div>
             </div>
 
-            {/* Action Buttons - Below phone on Mobile, Inside text section on Desktop */}
-            <div className="w-full mobile-order-3 lg:order-none lg:col-span-1 buttons-gap-reduce">
-              <div className="space-y-4 w-full max-w-md mx-auto lg:max-w-none lg:mx-0">
+            {/* Action Buttons - Below phone on Mobile only */}
+            <div className="w-full mobile-order-3 lg:hidden">
+              <div className="space-y-2 w-full max-w-md mx-auto">
                 {/* Primary CTA - Neon Gradient with Gem Effect */}
                 <button
                   onClick={handleRegister}
-                  className="w-full md:w-auto group relative overflow-hidden bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] text-white font-semibold py-5 px-8 rounded-xl transition-all duration-300 flex items-center justify-center space-x-3 hover:scale-105 btn-primary-gem"
+                  className="w-full md:w-auto group relative overflow-hidden bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105 btn-primary-gem mobile-btn"
                   style={{
                     boxShadow: '0 0 20px rgba(59, 130, 246, 0.4)',
                   }}
                 >
-                  <UserPlus className="w-5 h-5 flex-shrink-0" />
-                  <span>Open New Account</span>
+                  <UserPlus className="w-4 h-4 flex-shrink-0" />
+                  <span className="text-sm">Open New Account</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
                 </button>
 
                 {/* Secondary CTA - Glass Button */}
                 <button
                   onClick={handleLogin}
-                  className="w-full md:w-auto backdrop-blur-xl bg-white/5 border border-white/20 text-white font-semibold py-5 px-8 rounded-xl transition-all duration-300 flex items-center justify-center space-x-3 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                  className="w-full md:w-auto backdrop-blur-xl bg-white/5 border border-white/20 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] mobile-btn"
                 >
-                  <LogIn className="w-5 h-5 flex-shrink-0" />
-                  <span>Login</span>
+                  <LogIn className="w-4 h-4 flex-shrink-0" />
+                  <span className="text-sm">Login</span>
                 </button>
               </div>
             </div>
@@ -340,7 +368,7 @@ const Welcome = () => {
 
       {/* Live Ticker Tape - Responsive */}
       <div 
-        className="fixed bottom-0 left-0 right-0 z-40 backdrop-blur-md border-t border-white/10 py-2 sm:py-3 overflow-hidden"
+        className="fixed bottom-0 left-0 right-0 z-40 backdrop-blur-md border-t border-white/10 py-1 sm:py-3 overflow-hidden mobile-ticker"
         style={{
           background: 'rgba(0, 0, 0, 0.6)',
           backdropFilter: 'blur(12px)',
@@ -405,7 +433,7 @@ const Welcome = () => {
           animation: phoneFloat 6s ease-in-out infinite;
         }
         .phone-scale-wrapper {
-          transform: scale(0.5);
+          transform: scale(0.45);
         }
         @media (min-width: 640px) {
           .phone-scale-wrapper {
@@ -424,16 +452,10 @@ const Welcome = () => {
           .phone-float {
             animation: phoneFloat 6s ease-in-out infinite;
           }
-          .buttons-gap-reduce {
-            margin-top: 50px !important;
-          }
         }
         @media (max-width: 1023px) {
           .phone-float {
             animation: phoneFloatMobile 6s ease-in-out infinite;
-          }
-          .buttons-gap-reduce {
-            margin-top: 0 !important;
           }
         }
         @keyframes glow {
@@ -473,6 +495,38 @@ const Welcome = () => {
             inset 0 1px 0 rgba(255, 255, 255, 0.3),
             0 10px 20px -10px rgba(6, 182, 212, 0.5),
             0 0 30px rgba(59, 130, 246, 0.6);
+        }
+        @media (max-width: 640px) {
+          .mobile-btn {
+            font-size: 13px !important;
+          }
+          h1 {
+            margin-bottom: 4px !important;
+          }
+          main {
+            padding-top: 3rem !important;
+            padding-bottom: 0.5rem !important;
+            min-height: calc(100dvh - 32px) !important;
+            max-height: calc(100dvh - 32px) !important;
+            overflow: hidden !important;
+          }
+          .phone-container {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+          }
+          .mobile-ticker {
+            padding-top: 0.25rem !important;
+            padding-bottom: 0.25rem !important;
+            height: 28px !important;
+          }
+          .mobile-ticker span {
+            font-size: 10px !important;
+          }
+        }
+        @media (min-width: 640px) {
+          h1 {
+            margin-bottom: 12px !important;
+          }
         }
       `}</style>
     </div>
