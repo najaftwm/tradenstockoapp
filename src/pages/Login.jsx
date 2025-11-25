@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { ArrowLeft, Eye, EyeOff, Lock, User, Server } from 'lucide-react';
+import { ArrowLeft, Eye, EyeOff, Lock, User, Server, TrendingUp } from 'lucide-react';
 import { authAPI } from '../services/api';
 import { generateDeviceId, getDeviceIP } from '../utils/deviceUtils';
 import { useAuth } from '../hooks/useAuth.jsx';
@@ -16,8 +16,17 @@ const Login = () => {
   });
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [shakeError, setShakeError] = useState(false);
+  const [focusedField, setFocusedField] = useState(null);
   const navigate = useNavigate();
   const { login } = useAuth();
+  const formRef = useRef(null);
+
+  // Load animation
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -206,128 +215,437 @@ const Login = () => {
         toast.success(`Welcome back, ${response.ClientName}!`);
         navigate('/dashboard');
       } else if (response === 'false') {
+        setShakeError(true);
+        setTimeout(() => setShakeError(false), 500);
         toast.error('Invalid Login Details. Please Try Again.');
       } else if (response === 'Bloked') {
+        setShakeError(true);
+        setTimeout(() => setShakeError(false), 500);
         toast.error('Sorry Your Account Is Blocked');
       } else {
+        setShakeError(true);
+        setTimeout(() => setShakeError(false), 500);
         toast.error('Login failed. Please check your credentials and try again.');
       }
     } catch (error) {
       console.error('Login error:', error);
+      setShakeError(true);
+      setTimeout(() => setShakeError(false), 500);
       toast.error('Login failed. Please check your credentials and try again.');
     } finally {
       setLoading(false);
     }
   };
 
+  // Live ticker data for social proof
+  const tickerData = [
+    { symbol: 'BTC', change: '+2.4%', color: 'text-green-400' },
+    { symbol: 'ETH', change: '+1.8%', color: 'text-green-400' },
+    { symbol: 'SPY', change: '+0.3%', color: 'text-green-400' },
+  ];
+
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      {/* Header */}
-      <div className="p-6">
+    <div className="min-h-screen bg-[#02050a] relative overflow-hidden">
+      {/* Ambient Lighting Orbs */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {/* Top-left: Deep Blue */}
+        <div 
+          className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[120px] opacity-30"
+          style={{
+            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)',
+          }}
+        ></div>
+        {/* Bottom-right: Emerald Green */}
+        <div 
+          className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px] opacity-30"
+          style={{
+            background: 'radial-gradient(circle, rgba(34, 197, 94, 0.4) 0%, transparent 70%)',
+          }}
+        ></div>
+      </div>
+
+      {/* Subtle Grid Texture - Visible through glass */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px',
+          opacity: 0.6,
+        }}
+      ></div>
+      
+      {/* Visual Bridge Element - Blurred chart line spanning both sides */}
+      <div 
+        className="fixed top-1/2 left-0 right-0 pointer-events-none z-5 hidden lg:block"
+        style={{
+          transform: 'translateY(-50%)',
+          height: '2px',
+          background: 'linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.3) 20%, rgba(34, 197, 94, 0.3) 80%, transparent 100%)',
+          filter: 'blur(2px)',
+        }}
+      ></div>
+
+      {/* Vignette Effect - Darken corners */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.6) 100%)',
+        }}
+      ></div>
+
+      {/* Back Button - Top Left - Simplified */}
+      <div className="absolute top-6 left-6 z-50">
         <button
           onClick={() => navigate('/welcome')}
-          className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+          className="flex items-center text-[#6B7280] hover:text-white transition-colors"
+          style={{
+            fontSize: '11px',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+          }}
         >
-          <ArrowLeft className="w-5 h-5 mr-2" />
-          Back
+          <ArrowLeft className="w-3 h-3 mr-2" />
+          <span>Back</span>
         </button>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col justify-center px-6">
-        <div className="max-w-sm mx-auto w-full">
+      {/* Main Layout - 60/40 Split on Desktop */}
+      <div className="min-h-screen flex flex-col lg:grid lg:grid-cols-[60%_40%] relative z-10">
+        {/* Left Side (60% - Brand Side) */}
+        <div className="hidden lg:flex flex-col justify-between p-12 lg:p-16">
           {/* Logo */}
-          <div className="text-center mb-8">
-            <img src={logo} alt="TradeNstocko Logo" className="w-20 h-20 rounded-lg object-contain mx-auto mb-4" />
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Login to Tradenstocko</h1>
-            <p className="text-gray-600">Enter your credentials to access your account</p>
+          <div className="flex items-center space-x-3">
+            <img src={logo} alt="TradeNstocko Logo" className="w-10 h-10 rounded-lg object-contain" />
+            <span className="text-white font-semibold text-lg tracking-tight">Tradenstocko</span>
           </div>
 
-          {/* Login Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Username Field */}
-            <div className="relative">
-              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={formData.username}
-                onChange={handleInputChange}
-                className="input-trading pl-10"
-                placeholder="Username"
-                required
-              />
-            </div>
-
-            {/* Password Field */}
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                className="input-trading pl-10 pr-10"
-                placeholder="Password"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+          {/* Headline - Moved Up */}
+          <div className="flex-1 flex items-start pt-16">
+            <div className={`transition-all duration-1000 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+              <h1 
+                className="text-6xl xl:text-7xl font-bold mb-2"
+                style={{ 
+                  fontFamily: 'system-ui, -apple-system, sans-serif',
+                  letterSpacing: '-0.04em',
+                  lineHeight: '1.1',
+                  color: '#FFFFFF',
+                }}
               >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-              </button>
+                Trade Smarter<span style={{ color: '#22c55e' }}>.</span>
+              </h1>
+              <h2 
+                className="text-5xl xl:text-6xl font-bold"
+                style={{
+                  background: 'linear-gradient(to bottom, #FFFFFF 0%, #22c55e 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  letterSpacing: '-0.02em',
+                  lineHeight: '1.15',
+                  marginTop: '0',
+                  paddingBottom: '4px',
+                  display: 'block',
+                }}
+              >
+                Login Securely.
+              </h2>
+            </div>
+          </div>
+
+          {/* Social Proof - Live Tickers */}
+          <div className="flex items-center space-x-6 text-sm">
+            <span className="text-slate-400 text-xs uppercase tracking-wider">Live Markets</span>
+            <div className="flex items-center space-x-4">
+              {tickerData.map((item, index) => (
+                <div key={index} className="flex items-center space-x-2">
+                  <span className="text-white font-semibold">{item.symbol}</span>
+                  <span className={`font-mono ${item.color}`}>{item.change}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side (40% - Focus Side) - Glass Card */}
+        <div className="flex-1 flex items-center justify-center p-6 lg:p-12 relative">
+          {/* Atmospheric Nebula - Deep blue haze behind the card */}
+          <div 
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            style={{
+              zIndex: 1,
+            }}
+          >
+            <div 
+              className="w-[900px] h-[900px] rounded-full"
+              style={{
+                background: 'radial-gradient(circle, rgba(30, 58, 138, 0.4) 0%, rgba(37, 99, 235, 0.3) 20%, rgba(6, 182, 212, 0.2) 40%, rgba(0, 0, 0, 0) 70%)',
+                filter: 'blur(100px)',
+                opacity: 0.3,
+                transform: 'translate(50px, -50px)',
+              }}
+            ></div>
+          </div>
+          
+          {/* Blue/Cyan Haze - Ambient glow behind the card */}
+          <div 
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            style={{
+              zIndex: 1,
+            }}
+          >
+            <div 
+              className="w-[800px] h-[800px] rounded-full"
+              style={{
+                background: 'radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, rgba(6, 182, 212, 0.2) 30%, rgba(0, 0, 0, 0) 70%)',
+                filter: 'blur(120px)',
+                opacity: 0.2,
+              }}
+            ></div>
+          </div>
+          
+          {/* Green Haze - Additional ambient glow */}
+          <div 
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            style={{
+              zIndex: 1,
+            }}
+          >
+            <div 
+              className="w-[500px] h-[500px] rounded-full"
+              style={{
+                background: 'radial-gradient(circle, rgba(34, 197, 94, 0.15) 0%, rgba(0, 0, 0, 0) 70%)',
+                filter: 'blur(100px)',
+                transform: 'translate(100px, 100px)',
+              }}
+            ></div>
+          </div>
+
+          {/* Gradient Border Wrapper */}
+          <div 
+            className={`w-full max-w-md transition-all duration-1000 relative ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            } ${shakeError ? 'animate-shake' : ''}`}
+            style={{
+              borderRadius: '24px',
+              padding: '1px',
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%)',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+              zIndex: 2,
+            }}
+          >
+            {/* Glass Card Inner with Noise Texture - Holographic */}
+            <div 
+              ref={formRef}
+              className="w-full h-full rounded-[23px] relative overflow-hidden"
+              style={{
+                backdropFilter: 'blur(20px)',
+                background: 'rgba(0, 0, 0, 0.2)',
+                padding: '48px',
+                boxShadow: `
+                  inset 1px 1px 0px 0px rgba(255, 255, 255, 0.15),
+                  inset -1px -1px 0px 0px rgba(0, 0, 0, 0.3),
+                  0px 20px 40px -10px rgba(0, 0, 0, 0.6)
+                `,
+              }}
+            >
+              {/* Enhanced Noise Texture Overlay */}
+              <div 
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                  opacity: 0.15,
+                  mixBlendMode: 'overlay',
+                }}
+              ></div>
+
+              {/* Inner Highlight - Top */}
+              <div 
+                className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none"
+                style={{
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%)',
+                }}
+              ></div>
+            {/* Mobile Logo & Title */}
+            <div className="lg:hidden text-center mb-8 relative z-10">
+              <div className="flex items-center justify-center space-x-3 mb-6">
+                <img src={logo} alt="TradeNstocko Logo" className="w-10 h-10 rounded-lg object-contain" />
+                <span className="text-white font-semibold text-lg tracking-tight">Tradenstocko</span>
+              </div>
+              <h1 
+                className="text-4xl font-bold mb-2"
+                style={{ 
+                  fontFamily: 'system-ui, -apple-system, sans-serif',
+                  letterSpacing: '-0.04em',
+                  lineHeight: '1.1',
+                  color: '#FFFFFF',
+                }}
+              >
+                Trade Smarter<span style={{ color: '#22c55e' }}>.</span>
+              </h1>
+              <h2 
+                className="text-3xl font-bold mb-4"
+                style={{
+                  background: 'linear-gradient(to bottom, #FFFFFF 0%, #22c55e 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  letterSpacing: '-0.02em',
+                  lineHeight: '1.15',
+                  marginTop: '0',
+                  paddingBottom: '4px',
+                  display: 'block',
+                }}
+              >
+                Login Securely.
+              </h2>
             </div>
 
-            {/* Server Code Field (Optional) */}
-            {/* <div className="relative">
-              <Server className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                id="serverCode"
-                name="serverCode"
-                value={formData.serverCode}
-                onChange={handleInputChange}
-                className="input-trading pl-10"
-                placeholder="Server Code (Optional)"
-              />
-            </div> */}
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full btn-trading disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? (
-                <div className="flex items-center justify-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Signing in...
+            {/* Login Form */}
+            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+              {/* Username Field */}
+              <div className="relative">
+                <div 
+                  className={`absolute left-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 ${
+                    focusedField === 'username' ? 'text-white' : 'text-slate-400'
+                  }`}
+                  style={{
+                    filter: focusedField === 'username' ? 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.6))' : 'none',
+                  }}
+                >
+                  <User className="w-4 h-4" style={{ width: '18px', height: '18px' }} />
                 </div>
-              ) : (
-                'Login to TradeNstocko' 
-              )}
-            </button>
-          </form>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                  onFocus={() => setFocusedField('username')}
+                  onBlur={() => setFocusedField(null)}
+                  className="w-full pl-12 pr-4 rounded-lg transition-all duration-300 text-white font-medium focus:outline-none relative login-input"
+                  style={{
+                    background: focusedField === 'username' ? '#111827' : 'rgba(5, 7, 10, 0.6)',
+                    border: focusedField === 'username' ? '1px solid #3b82f6' : '1px solid rgba(255, 255, 255, 0.05)',
+                    padding: '12px 16px 12px 40px',
+                    boxShadow: focusedField === 'username' 
+                      ? '0 0 0 1px #3b82f6, 0 0 15px 0 rgba(59, 130, 246, 0.5)' 
+                      : 'inset 0px 2px 4px 0px rgba(0, 0, 0, 0.5)',
+                  }}
+                  placeholder="Username"
+                  required
+                />
+              </div>
 
-          {/* Demo Credentials */}
-          {/* <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-            <h3 className="text-sm font-medium text-blue-900 mb-2">Demo Credentials:</h3>
-            <p className="text-xs text-blue-700">
-              Username: <span className="font-mono bg-blue-100 px-1 rounded">Testlogin</span>
-            </p>
-            <p className="text-xs text-blue-700">
-              Password: <span className="font-mono bg-blue-100 px-1 rounded">54321</span>
-            </p>
-          </div> */}
+              {/* Password Field */}
+              <div className="relative">
+                <div 
+                  className={`absolute left-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 ${
+                    focusedField === 'password' ? 'text-white' : 'text-slate-400'
+                  }`}
+                  style={{
+                    filter: focusedField === 'password' ? 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.6))' : 'none',
+                  }}
+                >
+                  <Lock className="w-4 h-4" style={{ width: '18px', height: '18px' }} />
+                </div>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  onFocus={() => setFocusedField('password')}
+                  onBlur={() => setFocusedField(null)}
+                  className="w-full pl-12 pr-12 rounded-lg transition-all duration-300 text-white font-medium focus:outline-none relative login-input"
+                  style={{
+                    background: focusedField === 'password' ? '#111827' : 'rgba(5, 7, 10, 0.6)',
+                    border: focusedField === 'password' ? '1px solid #3b82f6' : '1px solid rgba(255, 255, 255, 0.05)',
+                    padding: '12px 40px 12px 40px',
+                    boxShadow: focusedField === 'password' 
+                      ? '0 0 0 1px #3b82f6, 0 0 15px 0 rgba(59, 130, 246, 0.5)' 
+                      : 'inset 0px 2px 4px 0px rgba(0, 0, 0, 0.5)',
+                  }}
+                  placeholder="Password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
+
+              {/* Submit Button - Emerald Green with Glow */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-4 rounded-xl text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
+                style={{
+                  background: 'linear-gradient(to bottom, #22c55e, #15803d)',
+                  boxShadow: 'inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4)',
+                  fontWeight: 700,
+                }}
+              >
+                {loading ? (
+                  <div className="flex items-center justify-center">
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Signing in...</span>
+                  </div>
+                ) : (
+                  <span style={{ fontWeight: 700, fontSize: '17px' }}>Log In</span>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+              </button>
+            </form>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Custom Animations & Styles */}
+      <style>{`
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+          20%, 40%, 60%, 80% { transform: translateX(8px); }
+        }
+        .animate-shake {
+          animation: shake 0.5s ease-in-out;
+        }
+        
+        /* Override browser autofill styles */
+        .login-input:-webkit-autofill,
+        .login-input:-webkit-autofill:hover,
+        .login-input:-webkit-autofill:focus,
+        .login-input:-webkit-autofill:active {
+          -webkit-box-shadow: 0 0 0 30px rgba(5, 7, 10, 0.6) inset !important;
+          -webkit-text-fill-color: white !important;
+          caret-color: white !important;
+        }
+        
+        /* Input placeholder and text styling */
+        .login-input::placeholder {
+          font-size: 13px;
+          text-transform: none;
+          letter-spacing: normal;
+          color: #6B7280;
+        }
+        
+        .login-input {
+          font-size: 14px;
+          color: white;
+        }
+      `}</style>
     </div>
   );
 };

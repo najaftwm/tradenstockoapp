@@ -145,7 +145,7 @@ const Welcome = () => {
                   style={{ 
                     fontFamily: 'system-ui, -apple-system, sans-serif',
                     letterSpacing: '-0.02em',
-                    lineHeight: '1.05',
+                    lineHeight: '0.98',
                     marginBottom: '12px',
                     background: 'linear-gradient(180deg, #FFFFFF 0%, #BCCCDC 100%)',
                     WebkitBackgroundClip: 'text',
@@ -175,6 +175,33 @@ const Welcome = () => {
                 >
                   Experience institutional-grade execution with the simplicity of a modern app.
                 </p>
+              </div>
+              
+              {/* Action Buttons - Below phone on Mobile, Inside text section on Desktop */}
+              <div className="w-full mobile-order-3 lg:order-none buttons-gap-reduce" style={{ marginTop: '24px' }}>
+                <div className="space-y-4 w-full max-w-md mx-auto lg:max-w-none lg:mx-0">
+                  {/* Primary CTA - Neon Gradient with Gem Effect */}
+                  <button
+                    onClick={handleRegister}
+                    className="w-full md:w-auto group relative overflow-hidden bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] text-white font-semibold py-5 px-8 rounded-xl transition-all duration-300 flex items-center justify-center space-x-3 hover:scale-105 btn-primary-gem"
+                    style={{
+                      boxShadow: '0 0 20px rgba(59, 130, 246, 0.4)',
+                    }}
+                  >
+                    <UserPlus className="w-5 h-5 flex-shrink-0" />
+                    <span>Open New Account</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                  </button>
+
+                  {/* Secondary CTA - Glass Button */}
+                  <button
+                    onClick={handleLogin}
+                    className="w-full md:w-auto backdrop-blur-xl bg-white/5 border border-white/20 text-white font-semibold py-5 px-8 rounded-xl transition-all duration-300 flex items-center justify-center space-x-3 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                  >
+                    <LogIn className="w-5 h-5 flex-shrink-0" />
+                    <span>Login</span>
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -307,40 +334,6 @@ const Welcome = () => {
                 </div>
               </div>
             </div>
-
-            {/* Action Buttons - Below phone on Mobile, Inside text section on Desktop */}
-            <div className="w-full mobile-order-3 lg:order-none lg:col-span-1">
-              <div className="space-y-3 sm:space-y-4 w-full max-w-md mx-auto lg:max-w-none lg:mx-0">
-                {/* Primary CTA - Neon Gradient with Gem Effect */}
-                <button
-                  onClick={handleRegister}
-                  className="w-full group relative overflow-hidden text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center space-x-3 hover:scale-105 btn-primary-gem active:scale-95"
-                  style={{
-                    height: '56px',
-                    padding: '0 32px',
-                    background: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)',
-                  }}
-                >
-                  <UserPlus className="w-5 h-5 flex-shrink-0" />
-                  <span>Open New Account</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                </button>
-
-                {/* Secondary CTA - Glass Button */}
-                <button
-                  onClick={handleLogin}
-                  className="w-full backdrop-blur-xl border border-white/20 text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-3 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] active:scale-95"
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    height: '56px',
-                    padding: '0 32px',
-                  }}
-                >
-                  <LogIn className="w-5 h-5 flex-shrink-0" style={{ display: 'flex', alignItems: 'center' }} />
-                  <span>Login</span>
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </main>
@@ -426,10 +419,13 @@ const Welcome = () => {
         }
         @media (min-width: 1024px) {
           .phone-scale-wrapper {
-            transform: scale(0.75) translateY(-40px);
+            transform: scale(0.75) translateY(-95px);
           }
           .phone-float {
             animation: phoneFloat 6s ease-in-out infinite;
+          }
+          .buttons-gap-reduce {
+            margin-top: 50px !important;
           }
         }
         @media (max-width: 1023px) {
