@@ -777,10 +777,30 @@ const MarketWatch = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-          <p className="text-white">Loading market data...</p>
+      <div className="min-h-screen bg-[#02050a] flex items-center justify-center relative overflow-hidden">
+        {/* Background effects */}
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <div 
+            className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[120px] opacity-30"
+            style={{
+              background: 'radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)',
+            }}
+          ></div>
+          <div 
+            className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px] opacity-30"
+            style={{
+              background: 'radial-gradient(circle, rgba(34, 197, 94, 0.4) 0%, transparent 70%)',
+            }}
+          ></div>
+        </div>
+        <div className="text-center relative z-10">
+          <div 
+            className="animate-spin rounded-full h-12 w-12 border-2 border-cyan-500 border-t-transparent mx-auto mb-4"
+            style={{
+              boxShadow: '0 0 30px rgba(6, 182, 212, 0.6)',
+            }}
+          ></div>
+          <p className="text-white font-medium" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>Loading market data...</p>
         </div>
       </div>
     );
@@ -797,45 +817,198 @@ const MarketWatch = () => {
       });
 
   return (
-    <div className="h-screen bg-gradient-to-br from-gray-900 via-gray-900 to-gray-950 flex flex-col">
-      {/* Fixed Header with Search Icon */}
-      <div className="flex-shrink-0 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800/50 shadow-sm">
-        <div className="px-3 sm:px-4 py-2">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-3">
-            <div className="flex items-center justify-between sm:justify-start gap-2">
-              <div className="flex-1 sm:flex-initial">
-                <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">MarketWatch</h1>
-                <p className="text-xs text-gray-500 hidden sm:block">Real-time market data</p>
+    <div className="h-screen bg-[#02050a] relative overflow-hidden flex flex-col">
+      {/* Premium Background Effects */}
+      {/* Global Ambient Illumination - Very Soft & Diffused */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {/* Subtle Radial Gradient from Center - Depth Effect */}
+        <div 
+          className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[1400px] h-[1400px] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(2, 5, 10, 0.95) 0%, rgba(2, 5, 10, 1) 60%, rgba(2, 5, 10, 1) 100%)',
+            opacity: 0.8,
+          }}
+        ></div>
+        {/* Top-left: Very Subtle Light Source */}
+        <div 
+          className="absolute top-0 left-0 w-[800px] h-[800px] rounded-full blur-[200px] opacity-5"
+          style={{
+            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%)',
+          }}
+        ></div>
+        {/* Bottom-right: Very Subtle Accent */}
+        <div 
+          className="absolute bottom-0 right-0 w-[800px] h-[800px] rounded-full blur-[200px] opacity-4"
+          style={{
+            background: 'radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%)',
+          }}
+        ></div>
+        {/* Center: Very Gentle Ambient */}
+        <div 
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full blur-[220px] opacity-3"
+          style={{
+            background: 'radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%)',
+          }}
+        ></div>
+        {/* Global Ambient Light - Very Diffused */}
+        <div 
+          className="absolute inset-0 opacity-4"
+          style={{
+            background: 'radial-gradient(ellipse at center top, rgba(6, 182, 212, 0.04) 0%, transparent 50%)',
+            filter: 'blur(150px)',
+          }}
+        ></div>
+      </div>
+
+      {/* Metallic Brushed Texture - Very Subtle */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 animated-grid"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255, 255, 255, 0.004) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.004) 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px',
+          opacity: 0.2,
+          mixBlendMode: 'overlay',
+        }}
+      ></div>
+
+      {/* Fixed Header with Premium Glassmorphism */}
+      <div className="flex-shrink-0 relative z-10">
+        <div 
+          className="backdrop-blur-[20px] bg-white/3 border-b border-white/8 relative"
+          style={{
+            boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.06)',
+          }}
+        >
+          {/* Very subtle top highlight */}
+          <div 
+            className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%)',
+            }}
+          ></div>
+          <div className="px-4 sm:px-6 py-3 sm:py-4 relative">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-4">
+              <div className="flex items-center justify-between sm:justify-start gap-3">
+                <div className="flex-1 sm:flex-initial">
+                  <h1 
+                    className="text-xl sm:text-2xl relative"
+                    style={{
+                      background: 'linear-gradient(to right, #E0E0E0, #D0D9E0)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                      fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                      fontWeight: 700,
+                      letterSpacing: '-0.02em',
+                      textShadow: '0px 1px 2px rgba(0, 0, 0, 0.4)',
+                      textRendering: 'optimizeLegibility',
+                    }}
+                  >
+                    MarketWatch
+                  </h1>
+                  <p 
+                    className="text-xs sm:text-sm hidden sm:block mt-1.5" 
+                    style={{ 
+                      fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                      color: '#B0B0B0',
+                      letterSpacing: '0.03em',
+                      fontWeight: 400,
+                      fontSize: '0.75rem',
+                      textRendering: 'optimizeLegibility',
+                    }}
+                  >
+                    Real-time market data
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="w-full sm:flex-1 sm:max-w-md">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
-                <input
-                  type="text"
-                  placeholder="Search by symbol..."
-                  value={filterQuery}
-                  onChange={(e) => setFilterQuery(e.target.value)}
-                  className="w-full pl-10 pr-10 py-2 bg-gray-800/60 border border-gray-700/50 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all backdrop-blur-sm"
-                />
-                <button
-                  onClick={handleSearchModalOpen}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1.5 bg-blue-600 hover:bg-blue-700 rounded transition-all duration-200 flex-shrink-0"
-                >
-                  <Plus className="w-4 h-4 text-white" />
-                </button>
+              <div className="w-full sm:flex-1 sm:max-w-md">
+                <div className="relative">
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none z-10" />
+                  <input
+                    type="text"
+                    placeholder="Search by symbol..."
+                    value={filterQuery}
+                    onChange={(e) => setFilterQuery(e.target.value)}
+                    className="w-full pl-11 pr-12 py-2.5 rounded-xl text-sm text-white focus:outline-none transition-all"
+                    style={{
+                      background: 'rgba(20, 25, 35, 0.3)',
+                      backdropFilter: 'blur(20px)',
+                      border: '1px solid rgba(255, 255, 255, 0.08)',
+                      boxShadow: 'inset 0px 1px 2px 0px rgba(0, 0, 0, 0.3), inset 0px -1px 1px 0px rgba(255, 255, 255, 0.03), inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.2)',
+                      fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                      fontWeight: 400,
+                      textRendering: 'optimizeLegibility',
+                    }}
+                    placeholderStyle={{
+                      color: 'rgba(200, 200, 200, 0.6)',
+                      fontWeight: 300,
+                      fontSize: '0.875rem',
+                    }}
+                  />
+                  <style>{`
+                    input::placeholder {
+                      color: rgba(200, 200, 200, 0.6) !important;
+                      font-weight: 300 !important;
+                      font-size: 0.875rem !important;
+                    }
+                  `}</style>
+                    onFocus={(e) => {
+                      e.target.style.border = '1px solid rgba(59, 130, 246, 0.3)';
+                      e.target.style.boxShadow = 'inset 0px 1px 2px 0px rgba(0, 0, 0, 0.3), inset 0px -1px 1px 0px rgba(255, 255, 255, 0.03), inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 2px 8px rgba(0, 0, 0, 0.2)';
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.border = '1px solid rgba(255, 255, 255, 0.08)';
+                      e.target.style.boxShadow = 'inset 0px 1px 2px 0px rgba(0, 0, 0, 0.3), inset 0px -1px 1px 0px rgba(255, 255, 255, 0.03), inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.2)';
+                    }}
+                  />
+                  <button
+                    onClick={handleSearchModalOpen}
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 rounded-xl transition-all duration-200 flex-shrink-0 subtle-pulsing-button"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(30, 64, 175, 0.9), rgba(14, 116, 144, 0.9))',
+                      boxShadow: 'inset 0px 1px 0px 0px rgba(255, 255, 255, 0.15), 0 0 0 1px rgba(6, 182, 212, 0.2), 0 0 6px rgba(6, 182, 212, 0.15)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow = 'inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2), 0 0 0 1px rgba(6, 182, 212, 0.3), 0 0 8px rgba(6, 182, 212, 0.2)';
+                      e.currentTarget.style.transform = 'translateY(-50%) scale(1.03)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = 'inset 0px 1px 0px 0px rgba(255, 255, 255, 0.15), 0 0 0 1px rgba(6, 182, 212, 0.2), 0 0 6px rgba(6, 182, 212, 0.15)';
+                      e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+                    }}
+                  >
+                    <Plus className="w-4 h-4 text-white" style={{ filter: 'drop-shadow(0 0 1px rgba(255, 255, 255, 0.5))' }} />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Fixed Tabs */}
+      {/* Fixed Tabs - Premium Glassmorphism Container */}
       <div 
         ref={tabsContainerRef}
-        className="flex-shrink-0 bg-gray-900/50 border-b border-gray-800/50 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        className="flex-shrink-0 relative z-10 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-4 sm:px-6 py-3"
       >
-        <div className="flex">
+        <div 
+          className="flex gap-2 rounded-2xl backdrop-blur-[24px] p-1.5 relative"
+          style={{
+            background: 'rgba(20, 25, 35, 0.35)',
+            border: '1px solid rgba(6, 182, 212, 0.12)',
+            boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.25), 0 2px 8px rgba(6, 182, 212, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+          }}
+        >
+          {/* Very subtle inner highlight */}
+          <div 
+            className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none rounded-t-2xl"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.06) 50%, transparent 100%)',
+            }}
+          ></div>
           {(() => {
             // Reorder tabs: active tab first, then others
             const activeTabData = tabs.find(tab => tab.id === activeTab);
@@ -851,15 +1024,53 @@ const MarketWatch = () => {
                   }
                 }}
                 onClick={() => handleTabChange(tab.id)}
-                className={`relative flex-1 min-w-[100px] sm:min-w-[110px] py-2 px-3 text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
+                className={`relative flex-1 min-w-[100px] sm:min-w-[120px] py-2.5 px-4 text-xs sm:text-sm transition-all duration-150 whitespace-nowrap rounded-xl ${
                   activeTab === tab.id
-                    ? 'text-white'
-                    : 'text-gray-500 hover:text-gray-300'
+                    ? ''
+                    : ''
                 }`}
+                style={{
+                  fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                  textRendering: 'optimizeLegibility',
+                  ...(activeTab === tab.id ? {
+                    background: 'linear-gradient(135deg, rgba(30, 64, 175, 0.4), rgba(14, 116, 144, 0.4))',
+                    boxShadow: 'inset 0px 1px 0px 0px rgba(255, 255, 255, 0.1)',
+                    color: '#FFFFFF',
+                    fontWeight: 600,
+                    letterSpacing: '-0.01em',
+                    textShadow: '0px 0px 5px rgba(100, 200, 255, 0.3)',
+                  } : {
+                    background: 'transparent',
+                    color: '#A0B0C0',
+                    fontWeight: 400,
+                    opacity: 0.8,
+                  })
+                }}
+                onMouseEnter={(e) => {
+                  if (activeTab !== tab.id) {
+                    e.currentTarget.style.background = 'rgba(6, 182, 212, 0.08)';
+                    e.currentTarget.style.color = '#B0C0D0';
+                    e.currentTarget.style.opacity = '1';
+                    e.currentTarget.style.transition = 'all 0.1s ease-out';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeTab !== tab.id) {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = '#A0B0C0';
+                    e.currentTarget.style.opacity = '0.8';
+                  }
+                }}
               >
                 {tab.label}
                 {activeTab === tab.id && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500"></div>
+                  <div 
+                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[75%] h-[1.5px] rounded-full"
+                    style={{
+                      background: 'linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.8), transparent)',
+                      boxShadow: '0 0 4px rgba(6, 182, 212, 0.6)',
+                    }}
+                  ></div>
                 )}
               </button>
             ));
@@ -867,21 +1078,59 @@ const MarketWatch = () => {
         </div>
       </div>
 
-      {/* Scrollable Market Data List */}
-      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto relative">
+      {/* Scrollable Market Data List - Premium Glassmorphism Container */}
+      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto relative z-10 px-4 sm:px-6 pb-4 marketwatch-scroll">
         {filteredSymbols.length > 0 ? (
-          <>
-            {/* MT5-style Table Header for All Exchanges - Fixed at top */}
-            <div className="sticky top-0 z-20 bg-gray-800 border-b border-gray-700 px-3 sm:px-2 py-2 shadow-lg">
-              <div className="grid grid-cols-[2.5fr_1fr_1fr] gap-3 sm:gap-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+          <div 
+            className="rounded-2xl backdrop-blur-[24px] mt-4 overflow-hidden relative"
+            style={{
+              background: 'rgba(20, 25, 35, 0.4)',
+              border: '1px solid rgba(6, 182, 212, 0.15)',
+              boxShadow: '0 12px 40px 0 rgba(0, 0, 0, 0.35), 0 4px 16px rgba(6, 182, 212, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.06)',
+            }}
+          >
+            {/* Noise Texture Overlay */}
+            <div 
+              className="absolute inset-0 pointer-events-none rounded-2xl"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")`,
+                opacity: 0.03,
+                mixBlendMode: 'overlay',
+                borderRadius: '1rem',
+              }}
+            ></div>
+            {/* Premium Table Header */}
+            <div 
+              className="sticky top-0 z-20 px-4 sm:px-6 py-3.5 border-b"
+              style={{
+                background: 'rgba(20, 25, 35, 0.6)',
+                backdropFilter: 'blur(20px)',
+                borderColor: 'rgba(255, 255, 255, 0.06)',
+                boxShadow: '0 2px 12px rgba(0, 0, 0, 0.2)',
+              }}
+            >
+              {/* Very subtle inner highlight */}
+              <div 
+                className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none"
+                style={{
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%)',
+                }}
+              ></div>
+              <div className="grid grid-cols-[2.5fr_1fr_1fr] gap-4 sm:gap-5 text-xs uppercase relative z-10" style={{ 
+                fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                fontWeight: 600,
+                letterSpacing: '0.05em',
+                color: '#C0C8D0',
+                textTransform: 'uppercase',
+                textRendering: 'optimizeLegibility',
+              }}>
                 <div className="text-left">SYMBOLS</div>
                 <div className="text-center">BID</div>
                 <div className="text-center">ASK</div>
-                {/* <div className="text-center">CHANGE</div> */}
               </div>
             </div>
             
-            <div className="bg-gray-900">
+            <div className="bg-transparent relative z-10">
             {filteredSymbols.map((symbol) => {
               // Check if this is a Crypto/Forex/Commodity tab (FX tabs)
               const isFXTab = ['CRYPTO', 'FOREX', 'COMMODITY'].includes(activeTab);
@@ -977,100 +1226,247 @@ const MarketWatch = () => {
                 askDisplay = askPrice > 0 ? askPrice.toString() : '-';
               }
               
-              // MT5-style table layout for all exchanges
+              // Premium table layout for all exchanges
               return (
                 <div
                   key={symbol.SymbolToken}
-                  className="grid grid-cols-[2.5fr_1fr_1fr] gap-3 sm:gap-4 px-2 sm:px-2 py-2.5 border border-gray-800 hover:bg-gray-800/50 active:bg-gray-800 transition-colors cursor-pointer group touch-manipulation"
+                  className="grid grid-cols-[2.5fr_1fr_1fr] gap-4 sm:gap-5 px-4 sm:px-6 py-3.5 border-b border-white/2 hover:bg-white/3 active:bg-white/5 transition-all duration-150 cursor-pointer group touch-manipulation relative"
                   onClick={() => handleSymbolClick(symbol)}
+                  style={{
+                    fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                    borderColor: 'rgba(6, 182, 212, 0.08)',
+                    textRendering: 'optimizeLegibility',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(30, 58, 138, 0.12)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '';
+                  }}
                 >
-                  {/* SYMBOLS Column - Full name visible */}
-                  <div className="flex items-center  min-w-0">
-                    <div className="text-white text-sm font-medium overflow-hidden  text-ellipsis whitespace-nowrap">
+                  
+                  {/* SYMBOLS Column - Premium Typography */}
+                  <div className="flex items-center min-w-0 relative z-10">
+                    <div className="overflow-hidden text-ellipsis whitespace-nowrap" style={{ 
+                      fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                      textRendering: 'optimizeLegibility',
+                    }}>
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span>{symbolDisplay}</span>
+                        <span 
+                          className="text-lg sm:text-xl text-white"
+                          style={{
+                            color: '#FFFFFF',
+                            fontWeight: 700,
+                            fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                            textRendering: 'optimizeLegibility',
+                          }}
+                        >
+                          {symbolDisplay}
+                        </span>
                         {formattedDate && (
-                          <span className="text-xs text-blue-400 font-semibold bg-blue-500/10 px-2 py-0.5 rounded">
+                          <span 
+                            className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full transition-all duration-200"
+                            style={{
+                              background: '#2B5A8F',
+                              border: '1px solid rgba(59, 130, 246, 0.2)',
+                              color: '#FFFFFF',
+                              fontWeight: 500,
+                              fontSize: '0.625rem',
+                              boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.3)',
+                              fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                              textRendering: 'optimizeLegibility',
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.background = '#3A6BA0';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.background = '#2B5A8F';
+                            }}
+                          >
                             {formattedDate}
                           </span>
                         )}
                       </div>
-                      <div className="mt-0.5">
-                        <span className="text-xs text-gray-500 pr-2">{symbol.ExchangeType}</span>
-                        <span className="text-xs text-gray-500">Lot : {symbol.Lotsize}</span>
+                      <div className="mt-1.5 flex items-center gap-2">
+                        <span className="text-xs pr-2" style={{ 
+                          fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                          fontWeight: 400,
+                          color: '#8090A0',
+                          fontSize: '0.7rem',
+                          textRendering: 'optimizeLegibility',
+                        }}>{symbol.ExchangeType}</span>
+                        <span className="text-xs" style={{ 
+                          fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                          fontWeight: 400,
+                          color: '#8090A0',
+                          fontSize: '0.7rem',
+                          textRendering: 'optimizeLegibility',
+                        }}>Lot : {symbol.Lotsize}</span>
                       </div>
                     </div>
                   </div>
                   
-                  {/* BID Column */}
-                  <div className="text-center flex items-center justify-center">
-                    <div className="relative group/price">
-                      <div className="px-3 py-1.5 rounded-lg bg-red-500/5 border border-red-500/20 hover:bg-red-500/10 hover:border-red-500/30 transition-all duration-200 min-w-[80px]">
-                        <span className="text-red-400 text-sm font-bold whitespace-nowrap tracking-tight">
-                          {bidDisplay}
-                        </span>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/5 to-red-500/0 rounded-lg opacity-0 group-hover/price:opacity-100 transition-opacity duration-200 pointer-events-none"></div>
+                  {/* BID Column - Sculpted Red Gradient Button */}
+                  <div className="text-center flex items-center justify-center relative z-10">
+                    <div 
+                      className="px-4 py-2.5 rounded-full min-w-[95px] transition-all duration-200 relative overflow-hidden"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(127, 29, 29, 1) 0%, rgba(153, 27, 27, 1) 50%, rgba(185, 28, 28, 1) 100%)',
+                        border: '1px solid rgba(220, 38, 38, 0.3)',
+                        boxShadow: 'inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2), inset -3px 0px 10px rgba(239, 68, 68, 0.25), inset 0 -1px 2px rgba(0, 0, 0, 0.3), 0 0 6px rgba(220, 38, 38, 0.12)',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = 'inset 0px 1px 0px 0px rgba(255, 255, 255, 0.25), inset -3px 0px 12px rgba(239, 68, 68, 0.35), inset 0 -1px 2px rgba(0, 0, 0, 0.3), 0 0 8px rgba(220, 38, 38, 0.15)';
+                        e.currentTarget.style.transform = 'scale(1.005)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = 'inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2), inset -3px 0px 10px rgba(239, 68, 68, 0.25), inset 0 -1px 2px rgba(0, 0, 0, 0.3), 0 0 6px rgba(220, 38, 38, 0.12)';
+                        e.currentTarget.style.transform = 'scale(1)';
+                      }}
+                    >
+                      {/* Specular highlight */}
+                      <div 
+                        className="absolute top-0 left-0 w-1/3 h-full pointer-events-none"
+                        style={{
+                          background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.15), transparent)',
+                          borderRadius: '9999px',
+                        }}
+                      ></div>
+                      <span className="text-white text-sm whitespace-nowrap block text-center relative z-10" style={{ 
+                        fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                        fontWeight: 700,
+                        color: '#FFFFFF',
+                        letterSpacing: '-0.01em',
+                        fontVariantNumeric: 'tabular-nums',
+                        textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
+                        textRendering: 'optimizeLegibility',
+                      }}>
+                        {bidDisplay}
+                      </span>
                     </div>
                   </div>
                   
-                  {/* ASK Column */}
-                  <div className="text-center flex items-center justify-center">
-                    <div className="relative group/price">
-                      <div className="px-3 py-1.5 rounded-lg bg-emerald-500/5 border border-emerald-500/20 hover:bg-emerald-500/10 hover:border-emerald-500/30 transition-all duration-200 min-w-[80px]">
-                        <span className="text-emerald-400 text-sm font-bold whitespace-nowrap tracking-tight">
-                          {askDisplay}
-                        </span>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/5 to-emerald-500/0 rounded-lg opacity-0 group-hover/price:opacity-100 transition-opacity duration-200 pointer-events-none"></div>
+                  {/* ASK Column - Sculpted Green Gradient Button */}
+                  <div className="text-center flex items-center justify-center relative z-10">
+                    <div 
+                      className="px-4 py-2.5 rounded-full min-w-[95px] transition-all duration-200 relative overflow-hidden"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(20, 83, 45, 1) 0%, rgba(22, 101, 52, 1) 50%, rgba(22, 163, 74, 1) 100%)',
+                        border: '1px solid rgba(34, 197, 94, 0.3)',
+                        boxShadow: 'inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2), inset -3px 0px 10px rgba(34, 197, 94, 0.25), inset 0 -1px 2px rgba(0, 0, 0, 0.3), 0 0 6px rgba(34, 197, 94, 0.12)',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = 'inset 0px 1px 0px 0px rgba(255, 255, 255, 0.25), inset -3px 0px 12px rgba(34, 197, 94, 0.35), inset 0 -1px 2px rgba(0, 0, 0, 0.3), 0 0 8px rgba(34, 197, 94, 0.15)';
+                        e.currentTarget.style.transform = 'scale(1.005)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = 'inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2), inset -3px 0px 10px rgba(34, 197, 94, 0.25), inset 0 -1px 2px rgba(0, 0, 0, 0.3), 0 0 6px rgba(34, 197, 94, 0.12)';
+                        e.currentTarget.style.transform = 'scale(1)';
+                      }}
+                    >
+                      {/* Specular highlight */}
+                      <div 
+                        className="absolute top-0 left-0 w-1/3 h-full pointer-events-none"
+                        style={{
+                          background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.15), transparent)',
+                          borderRadius: '9999px',
+                        }}
+                      ></div>
+                      <span className="text-white text-sm whitespace-nowrap block text-center relative z-10" style={{ 
+                        fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                        fontWeight: 700,
+                        color: '#FFFFFF',
+                        letterSpacing: '-0.01em',
+                        fontVariantNumeric: 'tabular-nums',
+                        textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
+                        textRendering: 'optimizeLegibility',
+                      }}>
+                        {askDisplay}
+                      </span>
                     </div>
                   </div>
                   
-                  {/* CHANGE Column */}
-                  {/* <div className="text-center flex items-center   justify-center">
-                    <span className={`text-md  font-semibold  whitespace-nowrap ${changeColor}`}>
-                      {isPositive ? '+' : ''}{changePercent}%
-                    </span>
-                  </div> */}
                 </div>
               );
             })}
             </div>
-          </>
+          </div>
         ) : currentSymbols.length > 0 ? (
-          <div className="flex flex-col items-center justify-center py-8 sm:py-12 text-center px-4">
-            <div className="relative mb-3 sm:mb-4">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-2xl"></div>
-              <div className="relative bg-gray-800/60 backdrop-blur-sm rounded-full p-3 sm:p-4 border border-gray-700/50">
-                <Search className="w-10 h-10 sm:w-12 sm:h-12 text-gray-400" />
+          <div className="flex flex-col items-center justify-center py-12 sm:py-16 text-center px-4 mt-8">
+            <div className="relative mb-4 sm:mb-6">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 rounded-full blur-3xl"></div>
+              <div 
+                className="relative backdrop-blur-[20px] rounded-full p-4 sm:p-5 border"
+                style={{
+                  background: 'rgba(20, 25, 35, 0.4)',
+                  borderColor: 'rgba(255, 255, 255, 0.1)',
+                  boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+                }}
+              >
+                <Search className="w-10 h-10 sm:w-12 sm:h-12 text-slate-400" />
               </div>
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5">No symbols found</h3>
-            <p className="text-gray-400 text-sm mb-4 sm:mb-6 max-w-sm leading-relaxed px-2">
+            <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif', background: 'linear-gradient(180deg, #FFFFFF 0%, #BCCCDC 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              No symbols found
+            </h3>
+            <p className="text-slate-400 text-sm mb-6 sm:mb-8 max-w-sm leading-relaxed px-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
               No symbols match your search "<span className="font-semibold text-white">{filterQuery}</span>"
             </p>
             <button
               onClick={() => setFilterQuery('')}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-5 sm:px-6 py-2 rounded-xl hover:from-blue-700 hover:to-blue-800 active:from-blue-800 active:to-blue-900 transition-all duration-200 font-semibold text-sm shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 touch-manipulation"
+              className="px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-200 touch-manipulation"
+              style={{
+                background: 'linear-gradient(135deg, rgba(59, 130, 246, 1), rgba(6, 182, 212, 1))',
+                boxShadow: '0 0 20px rgba(59, 130, 246, 0.4), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2)',
+                color: 'white',
+                fontFamily: 'system-ui, -apple-system, sans-serif',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 30px rgba(59, 130, 246, 0.6), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 20px rgba(59, 130, 246, 0.4), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2)';
+              }}
             >
               Clear Search
             </button>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center py-8 sm:py-12 text-center px-4">
-            <div className="relative mb-3 sm:mb-4">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-2xl"></div>
-              <div className="relative bg-gray-800/60 backdrop-blur-sm rounded-full p-3 sm:p-4 border border-gray-700/50">
-                <TrendingUp className="w-10 h-10 sm:w-12 sm:h-12 text-gray-400" />
+          <div className="flex flex-col items-center justify-center py-12 sm:py-16 text-center px-4 mt-8">
+            <div className="relative mb-4 sm:mb-6">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 rounded-full blur-3xl"></div>
+              <div 
+                className="relative backdrop-blur-[20px] rounded-full p-4 sm:p-5 border"
+                style={{
+                  background: 'rgba(20, 25, 35, 0.4)',
+                  borderColor: 'rgba(255, 255, 255, 0.1)',
+                  boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+                }}
+              >
+                <TrendingUp className="w-10 h-10 sm:w-12 sm:h-12 text-slate-400" />
               </div>
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5">No symbols in watchlist</h3>
-            <p className="text-gray-400 text-sm mb-4 sm:mb-6 max-w-sm leading-relaxed px-2">
+            <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif', background: 'linear-gradient(180deg, #FFFFFF 0%, #BCCCDC 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              No symbols in watchlist
+            </h3>
+            <p className="text-slate-400 text-sm mb-6 sm:mb-8 max-w-sm leading-relaxed px-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
               Add symbols to your <span className="font-semibold text-white">{activeTab}</span> watchlist to start tracking live market data and prices
             </p>
             <button
               onClick={handleSearchModalOpen}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-5 sm:px-6 py-2 rounded-xl hover:from-blue-700 hover:to-blue-800 active:from-blue-800 active:to-blue-900 transition-all duration-200 font-semibold text-sm shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 touch-manipulation"
+              className="px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-200 touch-manipulation"
+              style={{
+                background: 'linear-gradient(135deg, rgba(59, 130, 246, 1), rgba(6, 182, 212, 1))',
+                boxShadow: '0 0 20px rgba(59, 130, 246, 0.4), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2)',
+                color: 'white',
+                fontFamily: 'system-ui, -apple-system, sans-serif',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 30px rgba(59, 130, 246, 0.6), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 20px rgba(59, 130, 246, 0.4), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2)';
+              }}
             >
               Add Symbols
             </button>
@@ -1078,14 +1474,53 @@ const MarketWatch = () => {
         )}
       </div>
 
-      {/* Search Modal */}
+      {/* Search Modal - Premium Glassmorphism */}
       {showSearchModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-3 sm:p-4">
-          <div className="bg-gray-900 border border-gray-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-5 w-full max-w-lg max-h-[90vh] sm:max-h-[85vh] overflow-hidden flex flex-col shadow-2xl">
-            <div className="flex justify-between items-center mb-3 sm:mb-4">
+          <div 
+            className="rounded-2xl p-5 sm:p-6 w-full max-w-lg max-h-[90vh] sm:max-h-[85vh] overflow-hidden flex flex-col shadow-2xl backdrop-blur-[20px] relative"
+            style={{
+              background: 'rgba(20, 25, 35, 0.6)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
+            }}
+          >
+            {/* Noise Texture Overlay */}
+            <div 
+              className="absolute inset-0 pointer-events-none rounded-2xl"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")`,
+                opacity: 0.03,
+                mixBlendMode: 'overlay',
+                borderRadius: '1rem',
+              }}
+            ></div>
+            {/* Inner highlight */}
+            <div 
+              className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none rounded-t-2xl"
+              style={{
+                background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%)',
+              }}
+            ></div>
+            <div className="flex justify-between items-center mb-4 sm:mb-5 relative z-10">
               <div className="flex-1 min-w-0 pr-2">
-                <h3 className="text-lg sm:text-xl font-bold text-white">Search & Add Symbol</h3>
-                <p className="text-xs text-gray-500 hidden sm:block">Find and add symbols to your watchlist</p>
+                <h3 
+                  className="text-xl sm:text-2xl font-bold mb-1"
+                  style={{
+                    fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                    background: 'linear-gradient(180deg, #FFFFFF 0%, #BCCCDC 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    textRendering: 'optimizeLegibility',
+                  }}
+                >
+                  Search & Add Symbol
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-400 hidden sm:block" style={{ 
+                  fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                  textRendering: 'optimizeLegibility',
+                }}>Find and add symbols to your watchlist</p>
               </div>
               <button
                 onClick={() => {
@@ -1093,38 +1528,73 @@ const MarketWatch = () => {
                   setSearchQuery('');
                   setSearchResults([]);
                 }}
-                className="text-gray-400 hover:text-white hover:bg-gray-800 active:bg-gray-800 transition-all p-2 rounded-lg flex-shrink-0 touch-manipulation"
+                className="text-slate-400 hover:text-white transition-all p-2 rounded-xl flex-shrink-0 touch-manipulation relative z-10"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                }}
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
             
-            <div className="mb-3 sm:mb-4">
+            <div className="mb-4 sm:mb-5 relative z-10">
               <div className="relative">
-                <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
                 <input
                   type="text"
                   placeholder="Search symbol..."
                   value={searchQuery}
                   onChange={handleSearchChange}
-                  className="w-full pl-10 sm:pl-11 pr-4 py-2 bg-gray-800/60 border border-gray-700/50 rounded-lg sm:rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all backdrop-blur-sm"
+                  className="w-full pl-11 pr-4 py-3 rounded-xl text-sm text-white focus:outline-none transition-all backdrop-blur-xl"
+                  style={{
+                    background: 'rgba(20, 25, 35, 0.4)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    boxShadow: '0 0 20px rgba(59, 130, 246, 0.2), inset 0px 1px 2px 0px rgba(0, 0, 0, 0.3)',
+                    fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                    fontWeight: 400,
+                    textRendering: 'optimizeLegibility',
+                  }}
+                  placeholderStyle={{
+                    color: 'rgba(200, 200, 200, 0.6)',
+                    fontWeight: 300,
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.border = '1px solid rgba(59, 130, 246, 0.5)';
+                    e.target.style.boxShadow = '0 0 25px rgba(59, 130, 246, 0.4), inset 0px 1px 2px 0px rgba(0, 0, 0, 0.3)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                    e.target.style.boxShadow = '0 0 20px rgba(59, 130, 246, 0.2), inset 0px 1px 2px 0px rgba(0, 0, 0, 0.3)';
+                  }}
                 />
               </div>
             </div>
             
-            <div className="flex-1 overflow-y-auto -mx-2 px-2">
+            <div className="flex-1 overflow-y-auto -mx-2 px-2 relative z-10">
               {modalLoading ? (
                 <div className="text-center py-12">
-                  <div className="animate-spin rounded-full h-10 w-10 border-2 border-blue-500 border-t-transparent mx-auto mb-4"></div>
-                  <p className="text-gray-400 text-sm font-medium">Loading suggestions...</p>
+                  <div className="animate-spin rounded-full h-10 w-10 border-2 border-cyan-500 border-t-transparent mx-auto mb-4" style={{ boxShadow: '0 0 20px rgba(6, 182, 212, 0.5)' }}></div>
+                  <p className="text-slate-400 text-sm font-medium" style={{ 
+                    fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                    textRendering: 'optimizeLegibility',
+                  }}>Loading suggestions...</p>
                 </div>
               ) : searchLoading ? (
                 <div className="text-center py-12">
-                  <div className="animate-spin rounded-full h-10 w-10 border-2 border-blue-500 border-t-transparent mx-auto mb-4"></div>
-                  <p className="text-gray-400 text-sm font-medium">Searching...</p>
+                  <div className="animate-spin rounded-full h-10 w-10 border-2 border-cyan-500 border-t-transparent mx-auto mb-4" style={{ boxShadow: '0 0 20px rgba(6, 182, 212, 0.5)' }}></div>
+                  <p className="text-slate-400 text-sm font-medium" style={{ 
+                    fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                    textRendering: 'optimizeLegibility',
+                  }}>Searching...</p>
                 </div>
               ) : searchResults.length > 0 ? (
-                <div className="space-y-1.5 sm:space-y-2">
+                <div className="space-y-2">
                   {searchResults.map((symbol) => {
                     const isSelected = selectedTokens.has(symbol.instrument_token.toString());
                     const symbolParts = symbol.tradingsymbol?.split('_') || [symbol.name];
@@ -1132,36 +1602,100 @@ const MarketWatch = () => {
                     return (
                       <div
                         key={symbol.instrument_token}
-                        className={`flex items-center justify-between p-2.5 sm:p-3 rounded-lg border cursor-pointer transition-all duration-200 active:bg-gray-800/80 touch-manipulation ${
+                        className={`flex items-center justify-between p-3 sm:p-4 rounded-xl border cursor-pointer transition-all duration-200 touch-manipulation ${
                           isSelected 
-                            ? 'bg-emerald-500/10 border-emerald-500/30 hover:bg-emerald-500/15' 
-                            : 'bg-gray-800/40 border-gray-700/50 hover:bg-gray-800/60 hover:border-gray-700'
+                            ? '' 
+                            : ''
                         }`}
                         onClick={() => handleSymbolSelect(symbol)}
+                        style={{
+                          background: isSelected 
+                            ? 'linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(6, 182, 212, 0.1))'
+                            : 'rgba(20, 25, 35, 0.4)',
+                          border: isSelected 
+                            ? '1px solid rgba(34, 197, 94, 0.3)'
+                            : '1px solid rgba(255, 255, 255, 0.1)',
+                          boxShadow: isSelected 
+                            ? '0 0 20px rgba(34, 197, 94, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)'
+                            : 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+                          fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                          textRendering: 'optimizeLegibility',
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!isSelected) {
+                            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                            e.currentTarget.style.boxShadow = 'inset 0 0 20px rgba(59, 130, 246, 0.1)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!isSelected) {
+                            e.currentTarget.style.background = 'rgba(20, 25, 35, 0.4)';
+                            e.currentTarget.style.boxShadow = 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)';
+                          }
+                        }}
                       >
                         <div className="flex-1 min-w-0 pr-2">
-                          <div className="text-white font-semibold text-sm truncate">
+                          <div className="text-white font-bold text-sm truncate" style={{ 
+                            fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                            fontWeight: 700,
+                            textRendering: 'optimizeLegibility',
+                          }}>
                             {symbolParts[0] || symbol.name}
                           </div>
-                          <div className="flex items-center gap-1.5 flex-wrap mt-0.5">
+                          <div className="flex items-center gap-2 flex-wrap mt-1">
                             {symbolParts[1] && (
-                              <span className="text-xs text-gray-500 bg-gray-700/50 px-1.5 py-0.5 rounded">
+                              <span 
+                                className="text-xs px-2 py-0.5 rounded-full"
+                                style={{
+                                  background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2))',
+                                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                                  color: '#60A5FA',
+                                  fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                                  fontWeight: 500,
+                                  textRendering: 'optimizeLegibility',
+                                }}
+                              >
                                 {symbolParts[1]}
                               </span>
                             )}
-                            <span className="text-xs text-gray-400">
-                              Lot: <span className="font-semibold text-gray-300">{symbol.lot_size}</span>
+                            <span className="text-xs text-slate-400" style={{ 
+                              fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                              fontWeight: 400,
+                              textRendering: 'optimizeLegibility',
+                            }}>
+                              Lot: <span className="font-semibold text-slate-300">{symbol.lot_size}</span>
                             </span>
                           </div>
                         </div>
                         <div className="flex items-center ml-2 flex-shrink-0">
                           {isSelected ? (
-                            <div className="flex items-center text-emerald-400 space-x-1 bg-emerald-500/10 px-2 py-1 rounded-lg">
+                            <div 
+                              className="flex items-center text-emerald-400 space-x-2 px-3 py-1.5 rounded-xl"
+                              style={{
+                                background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(6, 182, 212, 0.2))',
+                                border: '1px solid rgba(34, 197, 94, 0.3)',
+                                boxShadow: '0 0 15px rgba(34, 197, 94, 0.3)',
+                              }}
+                            >
                               <Check className="w-4 h-4" />
                               <span className="text-xs font-semibold hidden sm:inline">Added</span>
                             </div>
                           ) : (
-                            <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-1.5 rounded-lg shadow-lg shadow-blue-500/30 active:from-blue-700 active:to-blue-800">
+                            <div 
+                              className="p-2 rounded-xl transition-all duration-200"
+                              style={{
+                                background: 'linear-gradient(135deg, rgba(6, 182, 212, 1), rgba(59, 130, 246, 1))',
+                                boxShadow: '0 0 20px rgba(6, 182, 212, 0.5), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2)',
+                              }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.boxShadow = '0 0 30px rgba(6, 182, 212, 0.7), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.3)';
+                                e.currentTarget.style.transform = 'scale(1.1)';
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.boxShadow = '0 0 20px rgba(6, 182, 212, 0.5), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2)';
+                                e.currentTarget.style.transform = 'scale(1)';
+                              }}
+                            >
                               <Plus className="w-4 h-4 text-white" />
                             </div>
                           )}
@@ -1172,15 +1706,33 @@ const MarketWatch = () => {
                 </div>
               ) : searchQuery.length >= 2 ? (
                 <div className="text-center py-16">
-                  <div className="text-gray-500 text-sm mb-2">No symbols found for</div>
-                  <div className="text-white font-semibold text-base">"{searchQuery}"</div>
-                  <div className="text-gray-500 text-xs mt-3">Try a different search term</div>
+                  <div className="text-slate-400 text-sm mb-2" style={{ 
+                    fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                    textRendering: 'optimizeLegibility',
+                  }}>No symbols found for</div>
+                  <div className="text-white font-bold text-base mb-3" style={{ 
+                    fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                    textRendering: 'optimizeLegibility',
+                  }}>"{searchQuery}"</div>
+                  <div className="text-slate-400 text-xs" style={{ 
+                    fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                    textRendering: 'optimizeLegibility',
+                  }}>Try a different search term</div>
                 </div>
               ) : (
                 <div className="text-center py-16">
-                  <div className="text-gray-500 text-sm mb-2">Popular symbols for</div>
-                  <div className="text-white font-semibold text-base">{activeTab}</div>
-                  <div className="text-gray-500 text-xs mt-3">Start typing to search</div>
+                  <div className="text-slate-400 text-sm mb-2" style={{ 
+                    fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                    textRendering: 'optimizeLegibility',
+                  }}>Popular symbols for</div>
+                  <div className="text-white font-bold text-base mb-3" style={{ 
+                    fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                    textRendering: 'optimizeLegibility',
+                  }}>{activeTab}</div>
+                  <div className="text-slate-400 text-xs" style={{ 
+                    fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                    textRendering: 'optimizeLegibility',
+                  }}>Start typing to search</div>
                 </div>
               )}
             </div>
@@ -1201,6 +1753,79 @@ const MarketWatch = () => {
           // Refresh market data or handle order placement
         }}
       />
+      
+      {/* Premium Custom Styles */}
+      <style>{`
+        /* Import Inter Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        /* Global Typography System */
+        * {
+          font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Animated Grid Pattern - Very Slow & Subtle */
+        @keyframes gridParallax {
+          0% {
+            background-position: 0 0;
+          }
+          100% {
+            background-position: 50px 50px;
+          }
+        }
+        
+        .animated-grid {
+          animation: gridParallax 30s linear infinite;
+        }
+        
+        /* Very Subtle Pulsing Plus Button */
+        @keyframes subtlePulse {
+          0%, 100% {
+            box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.15), 0 0 8px rgba(6, 182, 212, 0.2);
+          }
+          50% {
+            box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.18), 0 0 10px rgba(6, 182, 212, 0.25);
+          }
+        }
+        
+        .subtle-pulsing-button {
+          animation: subtlePulse 4s ease-in-out infinite;
+        }
+        
+        /* Ghosted Ultra-Thin Scrollbar - Almost Invisible */
+        .marketwatch-scroll::-webkit-scrollbar {
+          width: 3px;
+        }
+        
+        .marketwatch-scroll::-webkit-scrollbar-track {
+          background: transparent;
+          border-radius: 10px;
+        }
+        
+        .marketwatch-scroll::-webkit-scrollbar-thumb {
+          background: rgba(100, 116, 139, 0.2);
+          border-radius: 10px;
+        }
+        
+        .marketwatch-scroll::-webkit-scrollbar-thumb:hover {
+          background: rgba(100, 116, 139, 0.4);
+          box-shadow: 0 0 4px rgba(6, 182, 212, 0.3);
+        }
+        
+        /* Firefox scrollbar */
+        .marketwatch-scroll {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(100, 116, 139, 0.2) transparent;
+        }
+        
+        /* Smooth scrolling */
+        .marketwatch-scroll {
+          scroll-behavior: smooth;
+        }
+      `}</style>
     </div>
   );
 };
