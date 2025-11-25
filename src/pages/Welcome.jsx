@@ -130,9 +130,9 @@ const Welcome = () => {
       </header>
 
       {/* Main Content - Vertical Stack on Mobile */}
-      <main className="relative z-10 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-20 sm:pb-24 px-4 sm:px-6" style={{ minHeight: '100dvh' }}>
+      <main className="relative z-10 pt-20 sm:pt-20 md:pt-24 lg:pt-32 pb-4 sm:pb-20 md:pb-24 px-4 sm:px-6 mobile-no-scroll" style={{ minHeight: '100dvh' }}>
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center lg:items-start">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 sm:gap-8 md:gap-10 lg:gap-12 items-center lg:items-start">
             {/* Hero Text Section - Center on Mobile, Left on Desktop */}
             <div 
               className={`w-full text-center lg:text-left transition-all duration-1000 mobile-order-1 lg:order-none ${
@@ -141,7 +141,7 @@ const Welcome = () => {
             >
               <div>
                 <h1 
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mx-auto lg:mx-0"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mx-auto lg:mx-0 mobile-heading-spacing"
                   style={{ 
                     fontFamily: 'system-ui, -apple-system, sans-serif',
                     letterSpacing: '-0.02em',
@@ -458,11 +458,24 @@ const Welcome = () => {
             animation: phoneFloatMobile 6s ease-in-out infinite;
           }
           .phone-mobile-spacing {
-            margin-top: -24px !important;
-            margin-bottom: -24px !important;
+            margin-top: -32px !important;
+            margin-bottom: -32px !important;
           }
           .mobile-buttons-spacing {
-            margin-top: -8px !important;
+            margin-top: -20px !important;
+          }
+          .mobile-no-scroll {
+            height: 100dvh;
+            overflow: hidden;
+          }
+          .mobile-heading-spacing {
+            margin-bottom: 8px !important;
+          }
+        }
+        @media (min-width: 1024px) {
+          .mobile-no-scroll {
+            height: auto;
+            overflow: visible;
           }
         }
         @keyframes glow {
