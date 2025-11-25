@@ -208,7 +208,7 @@ const Welcome = () => {
 
             {/* 3D Floating Smartphone Mockup - Middle on Mobile, Right on Desktop */}
             <div 
-              className={`relative flex items-center justify-center transition-all duration-1000 delay-300 phone-container w-full lg:w-auto mobile-order-2 lg:order-none ${
+              className={`relative flex items-center justify-center transition-all duration-1000 delay-300 phone-container w-full lg:w-auto mobile-order-2 lg:order-none phone-mobile-spacing ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
               }`}
               style={{
@@ -338,7 +338,7 @@ const Welcome = () => {
             </div>
 
             {/* Action Buttons - Below phone on Mobile only */}
-            <div className="w-full mobile-order-3 lg:hidden mt-2">
+            <div className="w-full mobile-order-3 lg:hidden mobile-buttons-spacing">
               <div className="space-y-3 w-full max-w-md mx-auto">
                 {/* Primary CTA - Neon Gradient with Gem Effect */}
                 <button
@@ -457,6 +457,13 @@ const Welcome = () => {
         @media (max-width: 1023px) {
           .phone-float {
             animation: phoneFloatMobile 6s ease-in-out infinite;
+          }
+          .phone-mobile-spacing {
+            margin-top: -24px !important;
+            margin-bottom: -24px !important;
+          }
+          .mobile-buttons-spacing {
+            margin-top: -8px !important;
           }
         }
         @keyframes glow {
