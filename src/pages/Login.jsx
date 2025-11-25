@@ -625,6 +625,20 @@ const Login = () => {
                 )}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </button>
+
+              {/* Forgot Password Link */}
+              <div className="text-center pt-2">
+                <button
+                  type="button"
+                  className="text-slate-400 hover:text-white transition-colors text-sm font-medium"
+                  style={{
+                    fontSize: '13px',
+                    letterSpacing: '0.5px',
+                  }}
+                >
+                  Forgot Password?
+                </button>
+              </div>
             </form>
             </div>
           </div>
