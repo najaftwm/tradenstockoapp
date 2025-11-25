@@ -450,7 +450,7 @@ const Registration = () => {
           onKeyDown={() => handleKeyDown('otp')}
           onFocus={() => setFocusedField('otp')}
           onBlur={() => setFocusedField(null)}
-          className="w-full px-3 sm:px-4 py-3 sm:py-4 rounded-lg transition-all duration-300 text-white font-medium focus:outline-none registration-input text-center"
+          className="w-full px-3 sm:px-4 py-3 sm:py-4 rounded-lg transition-all duration-300 text-white font-medium focus:outline-none registration-input text-center sm:text-[28px] lg:text-[30px] sm:tracking-[1em]"
           style={{
             background: focusedField === 'otp' ? 'rgba(30, 58, 138, 0.3)' : 'rgba(0, 0, 0, 0.5)',
             border: typingFlash === 'otp' 
@@ -460,6 +460,7 @@ const Registration = () => {
                 : '1px solid rgba(255, 255, 255, 0.05)',
             fontSize: '24px',
             letterSpacing: '0.8em',
+            color: '#FFFFFF',
             boxShadow: typingFlash === 'otp'
               ? '0 0 0 1px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.4)'
               : focusedField === 'otp' 
@@ -467,9 +468,8 @@ const Registration = () => {
                 : 'inset 0px 1px 2px 0px rgba(0, 0, 0, 0.6), inset 0px -1px 1px 0px rgba(255, 255, 255, 0.05)',
             transition: 'border-color 0.15s ease-out, box-shadow 0.15s ease-out',
           }}
-          className="sm:text-[28px] lg:text-[30px] sm:tracking-[1em]"
-          placeholder="000000"
-          maxLength="6"
+          placeholder="0000"
+          maxLength="4"
           required
         />
       </div>
