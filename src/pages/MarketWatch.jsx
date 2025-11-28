@@ -888,7 +888,7 @@ const MarketWatch = () => {
           100% { opacity: 0.15; transform: scale(0.98); }
         }
       `}</style>
-      <div className="h-screen relative flex flex-col bg-app-bg overflow-hidden">
+      <div className="min-h-screen sm:h-screen relative flex flex-col bg-app-bg sm:overflow-hidden">
         {/* Subtle background gradient overlay */}
       <div className="fixed inset-0 pointer-events-none z-0" style={{ background: 'radial-gradient(ellipse at top, rgba(0, 81, 255, 0.03) 0%, transparent 50%)' }}></div>
 
@@ -1037,7 +1037,7 @@ const MarketWatch = () => {
       </div>
 
       {/* Phase 2: Market Watch Table - Dominant Glassmorphism Panel */}
-      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto relative z-10 px-3 sm:px-6 pb-1 sm:pb-4 premium-scrollbar" style={{ 
+      <div ref={scrollContainerRef} className="flex-1 sm:overflow-y-auto relative z-10 px-3 sm:px-6 pb-1 sm:pb-4 premium-scrollbar" style={{ 
         transform: 'translateZ(0)', 
         minHeight: 0,
         WebkitOverflowScrolling: 'touch',
@@ -1103,7 +1103,7 @@ const MarketWatch = () => {
               </div>
             </div>
             
-            <div className="bg-transparent relative z-10">
+            <div className="bg-transparent relative z-10 py-3 sm:py-0">
             {filteredSymbols.map((symbol) => {
               // Check if this is a Crypto/Forex/Commodity tab (FX tabs)
               const isFXTab = ['CRYPTO', 'FOREX', 'COMMODITY'].includes(activeTab);
@@ -1269,26 +1269,34 @@ const MarketWatch = () => {
               return (
                 <div
                   key={symbol.SymbolToken}
-                  className="sm:grid sm:grid-cols-[1.5fr_0.9fr_0.9fr_0.8fr_0.8fr_0.8fr_0.8fr_0.8fr_0.8fr_0.7fr_0.8fr] sm:gap-2 px-4 sm:px-4 py-4 sm:py-4 border-b transition-all duration-150 cursor-pointer group touch-manipulation relative"
+                  className="mb-3 sm:mb-0 rounded-xl sm:rounded-none bg-app-surface/40 sm:bg-transparent border sm:border-0 sm:border-b sm:grid sm:grid-cols-[1.5fr_0.9fr_0.9fr_0.8fr_0.8fr_0.8fr_0.8fr_0.8fr_0.8fr_0.7fr_0.8fr] sm:gap-2 px-4 sm:px-4 py-4 sm:py-4 transition-all duration-150 cursor-pointer group touch-manipulation relative"
                   onClick={() => handleSymbolClick(symbol)}
                   style={{
                     fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
                     borderColor: 'rgba(255, 255, 255, 0.08)',
                     textRendering: 'optimizeLegibility',
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                    boxShadow: window.innerWidth < 640 ? '0 2px 8px rgba(0, 0, 0, 0.3)' : 'none',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = 'rgba(74, 144, 226, 0.08)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '';
+                    if (window.innerWidth >= 640) {
+                      e.currentTarget.style.background = '';
+                    } else {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
+                    }
                   }}
                   onTouchStart={(e) => {
                     e.currentTarget.style.background = 'rgba(74, 144, 226, 0.12)';
                   }}
                   onTouchEnd={(e) => {
                     setTimeout(() => {
-                      e.currentTarget.style.background = '';
+                      if (window.innerWidth >= 640) {
+                        e.currentTarget.style.background = '';
+                      } else {
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
+                      }
                     }, 150);
                   }}
                 >
